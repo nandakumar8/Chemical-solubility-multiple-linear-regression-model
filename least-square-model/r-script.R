@@ -20,7 +20,10 @@ summary(lmFitAllPredictors)
 plot(Solubility~.,data=trainingData)
 abline(lm(Solubility~FP020,data=trainingData),col="red")
 par(mfrow=c(2,2))
-plot(lmFitAllPredictors)
+head(lmFitAllPredictors$coefficients)
+
+
+
 
 ###predict values 
 lmPred1<-predict(lmFitAllPredictors,solTestXtrans)
@@ -29,6 +32,7 @@ head(lmPred1)
 lmvalues1<-data.frame(obs=solTestY,pred=lmPred1)
 library(caret)
 defaultSummary(lmvalues1)
+head(lmvalues1)
 ###resampling
 ctrl<-trainControl(method="cv",n=10)
 set.seed(100)
